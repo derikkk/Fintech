@@ -8,12 +8,14 @@ date: "2022-09-14"
 install.packages("tidyverse")
 install.packages("padr")
 install.packages("zoo")
+install.packages("lubridate")
 ```
 
 ```{r}
 library(tidyverse)
 library(padr)
 library(zoo)
+library(lubridate)
 ```
 
 ```{r reading files}
@@ -32,7 +34,7 @@ crypt <- read_csv("crypt.csv") %>%
   rename(index = "S&P Cryptocurrency Broad Digital Market Index (USD)",
          date = "Effective date") %>%
   select(date, index) %>%
-  as.Date(date, "%m/%d/%Y")
+  mutate(date = parse_date(date, format = "%m/%d/%y"))
 ```
 
 ```{r}
@@ -61,6 +63,10 @@ d5clean <- d5f %>%
   mutate(T5YIFR = na.approx(T5YIFR)) 
 ```
 
+```{r}
+cryptclean <- cry %>%
+  mutate(index = na.approx(index)) 
+```
 
 
 
