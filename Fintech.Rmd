@@ -1,5 +1,6 @@
 ---
 title: "Fintech"
+author: "Derik Suria"
 output: html_document
 date: "2022-09-14"
 ---
